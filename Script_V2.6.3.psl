@@ -1,0 +1,2602 @@
+cursor 11 002
+
+
+
+message = [message " Make sure you are in the correct
+library before continuting with this script.
+- You should have a neighboring account pulled up
+- You should have the SOS up in Green Pages for refferince
+- ALL Y or N answers must be in CAPS"]
+
+new1 = [input-line "Verify you are creating a NEW ACCOUNT? Y or N?" SCREEN\ 1]
+if {$new1 == "N"} then {
+wait system
+wait system
+send <enter>
+exit-script
+}
+if {$new1 == "Y"} then {
+wait system
+wait system
+wait system
+wait system
+send <F6>
+cursor 05 037
+send "r"
+company_code = [input-line "Whats the Comapny Code of account? e.g. 866, 130? " SCREEN\ 1]
+send $company_code
+wait system
+send "Y"
+wait system
+wait system
+send "Y"
+wait system
+wait system
+send "Y"
+wait system
+wait system
+send "Y"
+wait system
+send <enter>
+cursor 04 010
+name = [input-line "Customer Name (LAST, FIRST)" SCREEN\ 1]
+send $name
+wait system
+wait system
+cursor 05 010
+name2 = [input-line "Secondary Name (LAST, FIRST)" SCREEN\ 1]
+send $name2
+cursor 06 010
+street_number = [input-line "Enter STREET NUMBER" SCREEN\ 1]
+send $street_number
+wait system
+wait system
+cursor 06 021
+street_name = [input-line "Enter STREET NAME" SCREEN\ 1]
+send $street_name
+wait system
+wait system
+cursor 08 010
+customer_city = [input-line "Enter Customer CITY" SCREEN\ 1]
+send $customer_city
+wait system
+wait system
+cursor 08 044
+customer_state = [input-line "Whats the state? " State]
+while {$customer_state != "TN" && $customer_state != "KY" && $customer_state != "AR"
+&& $customer_state != "AL" && $customer_state != "IA" && $customer_state != "VA" && $customer_state != "IA"} {
+customer_state = [input-line "Try again? " SCREEN\ 1]
+}
+send $customer_state
+wait system
+wait system
+cursor 08 051
+customer_zip = [input-line "Enter Customer ZIP CODE" SCREEN\ 1]
+send $customer_zip   
+wait system
+wait system
+cursor 09 010
+customer_phone = [input-line "Enter Customer PHONE NUMBER 9999999999" SCREEN\ 1]
+send $customer_phone
+cursor 10 010
+customer_email = [input-line "Enter Customer EMAIL" SCREEN\ 1]
+send $customer_email
+wait system
+wait system
+wait system
+wait system
+
+#Start screen 1 billing 
+
+#
+#FOR THE BELOW BILLING TO PLAY IT MAY BE THAT WE NEED TO SEND ENTER ABOVE IT ONCE AGAIN
+#
+
+billing = [input-line "IF BILLING ADDRESS IS THE SAME AS SERVICE HIT 1, IF NOT HIT 2" SCREEN\ 1]
+if {$billing == "1"} then {
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+dup = [input-line "DID THE DUPLICATE SCREEN POP UP Y OR N" SCREEN\ 1]
+while {$dup != "Y" && $dup != "N"} {
+dup = [input-line "Try again - DID THE DUPLICATE SCREEN POP UP Y OR N" Dupicate\ Screen]}
+if {$dup == "Y"} then {
+send "Y"
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+if {$dup == "X"} then {
+send "N"
+send <f3>}
+if {$dup == "N"} then {
+send <enter>
+wait system
+wait system}
+}
+if {$billing == "2"} then {
+cursor 13 010
+billing_name = [input-line "Enter Billing NAME" SCREEN\ 1]
+send $billing_name
+wait system
+wait system
+cursor 14 010
+bill_name2 = [input-line "Secondary Billing Name (LAST, FIRST)" SCREEN\ 1]
+send $bill_name2
+cursor 15 010
+billing_streetnumber = [input-line "Enter Billing STREET NUMBER" SCREEN\ 1]
+send $billing_streetnumber
+wait system
+wait system
+cursor 15 021
+billing_streetname = [input-line "Enter Billing STREET NAME" SCREEN\ 1]
+send $billing_streetname
+wait system
+wait system
+wait system
+wait system
+cursor 17 010
+billing_city = [input-line "Enter Billing CITY" SCREEN\ 1]
+send $billing_city
+wait system
+cursor 17 044
+billing_state = [input-line "Whats the state? " SCREEN\ 1]
+while {$billing_state != "TN" && $billing_state != "KY" && $billing_state != "AR"
+&& $billing_state != "AL" && $billing_state != "IA" && $billing_state != "VA" && $billing_state != "IA"} {
+billing_state = [input-line "Try again - Billing State TN,AL,AR,KY? " SCREEN\ 1]
+}
+send $billing_state
+wait system
+wait system
+cursor 17 051
+billing_zip = [input-line "Enter Billing ZIP CODE" SCREEN\ 1]
+send $billing_zip
+wait system 
+wait system  
+cursor 18 010
+billing_phone = [input-line "Enter Billing PHONE NUMBER 9999999999" SCREEN\ 1]
+send $billing_phone
+wait system
+wait system
+cursor 19 010
+billing_email = [input-line "Enter Customer EMAIL" SCREEN\ 1]
+send $billing_email
+wait system
+wait system
+send <tab>
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+}
+
+#
+#OVERRIDE SERVICE ADDRESS ERROR
+#
+
+add_override = [input-line "Is there an 'OVERRIDE ERROR = N in the top right? Y or N" Override]
+while {$add_override != "Y" && $add_override != "N"} {
+add_override = [input-line "Try again - Is there an 'OVERRIDE ERROR = N in the top right? Y or N" Override]}
+if {$add_override == "N"} then {
+wait system
+wait system
+}
+if {$add_override == "Y"} then {
+cursor 06 077
+send "Y"
+wait system
+wait system
+send <enter>
+wait system
+wait system
+cursor 10 037
+wait system 
+wait system
+send <enter>
+wait system
+wait system
+}
+wait system
+wait system
+wait system
+
+#ca1 = [message "Cleansed Address may pop up here TWICE, hit OK"]
+ca2 = [input-line  "Did Cleansed Addresss pop up here? Y or N" Cleansed\ Address\ 1]
+while {$ca2 != "Y" && $ca2 != "N"} {
+ca2 = [input-line "Try again - Did Cleansed Addresss pop up here AGAIN? Y or N" Cleansed\ Address\ 2]}
+if {$ca2 == "Y"} then {
+send "3"
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send "Y"
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+if {$ca2 == "N"} then {
+wait system
+wait system
+}
+ca4 = [input-line  "Did Cleansed Addresss pop up here AGAIN? Y or N" Cleansed\ Address]
+while {$ca4 != "Y" && $ca4 != "N"} {
+ca4 = [input-line "Try again - Did Cleansed Addresss pop up here AGAIN? Y or N" Cleansed\ Address]}
+if {$ca4 == "Y"} then {
+send "3"
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send "Y"
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system}
+if {$ca4 == "N"} then {
+wait system
+wait system}
+#STILL THINK WE MAY NEED ONE MORE SEND ENTER ABOVE HERE
+
+#
+#NOT SURE IF WE NEED THIS DUP HERE EXACTLY
+#
+
+dup = [input-line "DID THE DUPLICATE SCREEN POP UP AGAIN Y OR N" Duplicate]
+while {$dup != "Y" && $dup != "N"} {
+dup = [input-line "Try again - DID THE DUPLICATE SCREEN POP UP Y OR N" Duplicate]}
+if {$dup == "Y"} then {
+send "Y"
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+if {$dup == "X"} then {
+send "N"
+send <f3>}
+if {$dup == "N"} then {
+send <enter>
+wait system
+wait system}
+
+
+#
+#DUP ABOVE
+#
+
+cursor 09 010
+
+
+#TOOK OUT AN IF DUP STATMENT. MAY HAVE BEEN REDUNDANT FROM WHAT IS ABOVE	
+
+wait system 
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+cursor 07 027
+send "NA"
+send <tab>
+cursor 08 034
+send "500"
+wait system
+wait system
+send <field-plus>
+cursor 09 027
+send "0000"
+wait system
+wait system
+send <enter>
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+
+billing_cycle = [input-line "Billing Cycle : RQ1, RQ2 ext." Screen\ 2]
+while {$billing_cycle != "RQ1" && $billing_cycle != "RQ2" &&
+$billing_cycle != "RQ3" && $billing_cycle != "RQ4" && 
+$billing_cycle != "RMA" && $billing_cycle != "RMR" && 
+$billing_cycle != "RQA"} {
+billing_cycle = [input-line "Try again - Billing Cycle : RQ1, RQ2 ext." Screen\ 2]
+} 
+send $billing_cycle
+master = [input-line "Master account number" Screen\ 2]
+send $master
+wait system
+cursor 06 019
+wait system
+status_codes1 = [input-line "Enter status codes WITHOUT spaces or hit OK if none" Screen\ 2]
+send $status_codes1
+wait system
+wait system
+send <field-plus>
+send <field-plus>
+send <field-plus>
+send <field-plus>
+wait system
+wait system
+cursor 07 019
+tax_profile = [input-line "Enter Customer TAX PROFILE" Screen\ 2]
+send $tax_profile
+cursor 08 019
+finance_charge = [input-line "What is the FINANCE CHARGE? " Screen\ 2]
+while {$finance_charge != "3" && $finance_charge != "X"} {
+finance_charge = [input-line "Try again - What is the FINANCE CHARGE?" Screen\ 2]
+}
+send $finance_charge
+payterms = [input-line "What are the PAYTERMS? " Screen\ 2]
+while {$payterms != "DUR"} {
+payterms = [input-line "Try again - What are the PAYTERMS? " Screen\ 2]
+}
+send $payterms
+wait system
+wait system
+wait system
+cursor 10 019
+price_group = [input-line "What is the PRICE GROUP? " Screen\ 2]
+send $price_group
+send <field-plus>
+cursor 11 019
+wait system
+wait system
+wait system
+wait system
+cursor 17 019
+county_code = [input-line "MANDATORY - What is the COUNTY CODE? " Screen\ 2]
+send $county_code
+while {$county_code == ""} {
+county_code = [input-line "Try again - MANDATORY - What is the COUNTY CODE? " Screen\ 2]
+wait system
+wait system
+cursor 17 019
+send $county_code
+wait system
+wait system
+}
+wait system
+wait system
+wait system
+wait system
+cursor 18 019
+municipality = [input-line "MANDATORY - What is customer MUNICIPALITY CODE? "]
+send $municipality
+while {$municipality == ""} {
+municipality = [input-line "Try again - MANDATORY - What is customer MUNICIPALITY CODE? "]
+wait system
+wait system
+18 019
+send $municipality
+wait system
+wait system
+}
+
+#
+#DATE
+#
+
+cursor 19 019
+
+currentdate = [screen-rect 01 070 01 080]
+currentdate = [string trim $currentdate]
+currentm = [string range $currentdate 0 1]
+currentd = [string range $currentdate 3 4]
+currenty = [string range $currentdate 6 9]
+currentfdate = "$currentm$currentd$currenty"
+current_md = "$currentm$currentd"
+
+date_s = [input-line "Start Date?" Screen\ 2]	
+date_sm = [string range $date_s 0 1]
+date_sd = [string range $date_s 2 3]
+date_sy = [string range $date_s 4 8]
+date_mod = "$date_sm$date_sd$date_sy"
+date_md = "$date_sm$date_sd"
+
+while {$date_sy != $currenty && $date_sy != $currenty+1} {
+#date_sy = [input-line "Please check the date again. May have to enter correct date twice"]
+date_s = [input-line "Please check the date again.1" Screen\ 2]	
+date_sm = [string range $date_s 0 1]
+date_sd = [string range $date_s 2 3]
+date_sy = [string range $date_s 4 8]
+date_mod = "$date_sm$date_sd$date_sy"
+}
+while {$date_md < $current_md} {
+date_s = [input-line "Please check the date again.2" Screen\ 2]
+date_sm = [string range $date_s 0 1]
+date_sd = [string range $date_s 2 3]
+date_sy = [string range $date_s 4 8]
+date_md = "$date_sm$date_sd"
+}
+send $date_s
+send <field-plus>
+send <enter>
+wait system
+wait system
+wait system
+
+
+#
+#OUT OF 1YR DATE RANGE
+#
+
+d_range = [input-line "Did the START DATE range WARNING pop up?" Screen\ 2]
+if {$d_range == "N"} then {
+wait system
+wait system
+}
+if {$d_range == "Y"} then {
+cursor 12 052
+wait system
+wait system
+wait system
+send "N"
+wait system
+cursor 19 019
+send <field-plus>
+wait system
+wait system
+cursor 19 019
+
+currentdate = [screen-rect 01 070 01 080]
+currentdate = [string trim $currentdate]
+currentm = [string range $currentdate 0 1]
+currentd = [string range $currentdate 3 4]
+currenty = [string range $currentdate 6 9]
+currentfdate = "$currentm$currentd$currenty"
+current_md = "$currentm$currentd"
+
+date_s = [input-line "Start Date?" Screen\ 2]	
+date_sm = [string range $date_s 0 1]
+date_sd = [string range $date_s 2 3]
+date_sy = [string range $date_s 4 8]
+date_mod = "$date_sm$date_sd$date_sy"
+date_md = "$date_sm$date_sd"
+
+while {$date_sy != $currenty && $date_sy != $currenty+1} {
+#date_sy = [input-line "Please check the date again. May have to enter correct date twice"]
+date_s = [input-line "Please check the date again.1"]	
+date_sm = [string range $date_s 0 1]
+date_sd = [string range $date_s 2 3]
+date_sy = [string range $date_s 4 8]
+date_mod = "$date_sm$date_sd$date_sy"
+}
+while {$date_md < $current_md} {
+date_s = [input-line "Please check the date again.2" Screen\ 2]
+date_sm = [string range $date_s 0 1]
+date_sd = [string range $date_s 2 3]
+date_sy = [string range $date_s 4 8]
+date_md = "$date_sm$date_sd"
+send $date_s
+send <field-plus>
+send <enter>
+wait system
+wait system
+wait system
+}
+}
+
+#
+#END DATE
+#
+
+
+#
+#ADDED BILL POP
+#
+
+bill = [input-line "Did the master bill pop up? Y or N" Screen\ 2]
+while {$bill != "Y" && $bill != "N"} {
+bill = [input-line "Try again - Did the master bill pop up? Y or N" Screen\ 2]
+}
+if {$bill == "N"} then {
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+if {$bill == "Y"} then {
+bill_yes = [input-line "Is this the correct BILL-TO-ACCOUNT? Y or N" Screen\ 2]
+while {$bill_yes != "Y" && $bill_yes != "N"} {
+bill_yes = [input-line "Try again - Is this the correct BILL-TO-ACCOUNT? Y or N" Screen\ 2]
+}
+if {$bill_yes == "Y"} then {
+send "Y"
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+}
+
+
+#
+#screen 5
+#
+
+
+cursor 06 002
+
+#####################################################
+l6t = [input-line "Do you need to add L6T?" Screen\ 5]
+if {$l6t == "N"} then {
+wait system
+wait system
+}
+if {$l6t == "Y"} then {
+send "1.00"
+wait system
+send <field-plus>
+wait system
+wait system
+send "L6T"
+wait system
+wait system
+l6t_charge = [input-line "How much" Screen\ 5]
+send $l6t_charge
+wait system
+send <field-plus>
+wait system
+send "888"
+wait system
+wait system
+cursor 08 002
+wait system
+send <f1>
+wait system
+send <f1>
+wait system
+cursor 07 027
+wait system
+send "STATE DISPOSAL"
+wait system
+wait system
+send <f1>
+wait system
+cursor 08 002
+}
+
+####################################################
+
+message = [input-line "Do you have a service line to enter? Y or N" Screen\ 5]
+while {$message == "Y"} {
+quantity = [input-line "QUANTITY of service?"]
+while {$quantity != "1" && $quantity != "2" && $quantity != "3" &&
+$quantity != "4" && $quantity != "5"} {
+quantity = [input-line "Try again - QUANTITY of service?"]
+}
+send $quantity
+send <field-plus>
+svc = [input-line "LINE OF BUISNESS, 96T, RBG, RBN?" Screen\ 5]
+send $svc
+rate = [input-line "What is the RATE? example : 12.00" Screen\ 5]
+send $rate
+send <field-plus>
+route = [input-line "What is the ROUTE NUMBER" Screen\ 5]
+send $route
+send <field-plus>
+send <field-plus>
+send <field-plus>
+send <field-plus>
+send <field-plus>
+send <field-plus>
+send <field-plus>
+send <field-plus>
+occurs = [input-line "OCCURS? Y weekly, O(odd),E(even)" Screen\ 5]
+while {$occurs != "Y" && $occurs != "O" && $occurs != "E"} {
+occurs = [input-line "Try again - OCCURS? Y weekly, O(odd),E(even)"]
+}
+if {$occurs == "Y"} then {
+wait system
+wait system
+send <field-plus>
+send <field-plus>
+send <field-plus>
+send <field-plus>
+}
+if {$occurs != "Y"} then {
+send $occurs
+send <field-plus>
+send <field-plus>
+send <field-plus>
+}
+message = [input-line "VERIFY - Do you have another service line to enter? Y or N" Screen\ 5]
+}
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+
+#
+#Ends screen 5
+#
+
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+
+#
+#INISIATE LDC ON 5 BY GOING TO F11. THIS MAY KEEP THE BELOW FROM HAPPENING 
+#
+
+pop_ldc = [input-line "Does this account have a container? Y or N" Screen\ 5]
+if {$pop_ldc == "Y"} then {
+ldc = [input-line "Do you need to enter LDC?  Y or N." Screen\ 5]
+if {$ldc == "Y"} then {
+cursor 13 006
+wait system
+wait system
+wait system
+wait system
+ldc_qty = [input-line "What is the QUANTITY? example : 1.00" Screen\ 5]
+send $ldc_qty
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter> 
+wait system
+wait system
+wait system
+wait system
+cursor 09 035
+}
+if {$ldc == "N"} then {
+send <field-plus>
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system}
+wait system
+wait system
+}
+if {$pop_ldc == "N"} then {
+wait system
+wait system
+send <field-plus>
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+}
+
+#ADD AN IF STATMENT ASKING IF THE POP UP FOR SERVICE CHANGE CAME UP TO HIT YES, IF NOT THEN NO
+#I THINK THE SCRIPT IS SKIPPING TO SCREEN 39 WHEN IT ASK FOR CUSOMTER NUMBER HERE
+
+#
+#End screen 5
+#
+
+option_sales2 = [input-line "If it is asking for your SALES NUMBER hit Y, if NOT hit N" Value\ Change]
+if {$option_sales2 == "Y"} then {
+wait system
+wait system
+cursor 09 035
+sales_person = [input-line "Whats your SALES NUMBER?" Value\ Change ]
+send $sales_person
+send <enter>
+wait system
+wait system
+send "NBG"
+cursor 12 035
+not1 = [input-line "DISCRIPTION?" Value\ Change]
+send $not1
+wait system
+send <enter>
+wait system
+wait system 
+send <enter>
+wait system
+wait system
+
+#
+#screen 31
+#
+
+open = [input-line "Is area OPEN MARKET? Y or N" Screen\ 31]
+if {$open == "Y"} then {
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system}
+if {$open == "N"} then {
+send "2"
+wait system
+send <enter>
+wait system
+wait system
+contract = [input-line "Whats the contract type if not OPEN MARKET (FRAN/MUNI , 
+FRAN/MUNI-HOA , OPEN MARKET , OPEN MARKET-HOA?" Screen\ 31]
+while {$contract != "FRAN/MUNI" && $contract != "FRAN/MUNI-HOA" && $contract != "OPEN MARKET-HOA"} {
+contract = [input-line "Try again - Whats the contract type if not OPEN MARKET (FRAN/MUNI , 
+FRAN/MUNI-HOA , OPEN MARKET , OPEN MARKET-HOA?" Screen\ 31]
+}
+send $contract
+wait system
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+}
+wait system
+send <enter>
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+
+#
+#THIS WILL MAKE SURE THE NEW ACCOUNT NUMBER IS AT THE TOP
+#
+
+home = [input-line "Enter the account number" Home\ Screen]
+wait system
+wait system
+send <f10>
+wait system
+wait system
+send "1"
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send $home
+wait system
+send <field-plus>
+wait system
+send <enter> 
+wait system
+wait system 
+
+
+
+#
+#NEW
+#
+
+new2 = [input-line "Do you need to add a NEW ticket? Y or N" NEW\ Ticket]
+if {$new2 == "Y"} then {
+send "15"
+wait system
+wait system
+send <enter>
+wait system 
+wait system
+send <f6>
+wait system
+wait system
+send "tktnew"
+date2 = [input-line "DATE? 09242017" NEW\ Ticket]
+send $date2
+wait system
+send <enter>
+wait system
+wait system
+cursor 09 042
+wait system
+send "customer"
+wait system
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+cursor 16 003
+send "1"
+cursor 16 006
+send "96T"
+wait system
+wait system
+cursor 16 010
+send "1"
+send <field-plus>
+wait system
+wait system
+wait system
+cursor 17 046
+wait system
+wait system
+send "NEW"
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+if {$new2 == "N"} then {
+wait system
+wait system
+}
+cursor 11 002
+send "3"
+send <enter>
+wait system
+wait system
+screen3_notes = [input-line "Enter SCREEN 3 Notes" Screen\ 3]
+send $screen3_notes
+wait system
+send <enter>
+wait system
+wait system
+
+
+#
+#End NEW
+#
+
+#AUTODATE HAS TO START ON HOME SCREEN
+
+currentdate = [screen-rect 01 001 01 011]
+currentdate = [string trim $currentdate]
+currentm = [string range $currentdate 0 1]
+currentd = [string range $currentdate 3 4]
+currenty = [string range $currentdate 6 9]
+currentfdate = "$currentm$currentd$currenty"
+
+
+#
+#ADC 
+#
+
+cursor 11 002
+wait system
+cda = [input-line "Are you waiving the ADC? for Y or for N" Administrative\ Charge]
+if {$cda == "Y"} then {
+cursor 11 002
+wait system
+send <enter>
+}
+if {$cda == "N"} then {
+cursor  11 002
+wait system
+wait system
+wait system
+wait system
+send "15"
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <f6>
+wait system
+wait system
+wait system
+
+#CREATING ADC
+
+send "tktadc"
+cursor 15 030
+send $currentfdate
+send <field-plus>
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+cursor 09 043test
+requested = [screen-rect 07 001 07 025]
+#requested = [input-line "Requested by?" Administrative\ Charge]
+send $requested
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system 
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system 
+wait system
+send <pgdn>
+wait system
+wait system
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+wait system
+wait system
+cursor 16 003
+wait system 
+wait system
+send "1"
+wait system 
+cursor 16 006
+send "SRU"
+send "1.<field-plus>"
+wait system
+wait system
+wait system
+wait system 
+wait system
+cursor 17 046
+send "ADC"
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+cursor 11 002
+wait system
+wait system
+wait system
+send "15"
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+
+
+#ADDING A LINE CHOICE HERE SO THE ADC TKT CAN BE SELECTED
+
+adc = [input-line "Choose line with the ADC. From the top to bottom starting with 1" Administrative\ Charge]
+if {$adc == "1"} then {
+cursor 07 002
+send "3"
+send <enter>
+wait system
+wait system
+send <tab>
+send "1"
+send <enter>
+wait system
+wait system
+send $date
+send <enter>
+wait system
+wait system
+currenttime = [screen-rect 06 075 06 080]
+currenttime = [string trim $currenttime :]
+currenth = [string range $currenttime 0 1]
+currentm = [string range $currenttime 3 4]
+time = "$currenth$currentm"
+wait system
+cursor 07 075
+wait system
+wait system
+send $time
+wait system
+wait system
+adc_adj = [input-line "Do you need to adjust the ADC amount? Y or N" Administrative\ Charge]
+if {$adc_adj == "N"} then {
+wait system
+wait system
+}
+if {$adc_adj == "Y"} then {
+cursor 14 011
+adc = [input-line "What is the new price? 0.00" Administrative\ Charge]
+send $adc
+wait system
+send <field-plus>
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+}
+if {$adc == "2"} then {
+cursor 08 002
+send "3"
+send <enter>
+wait system
+wait system
+send <tab>
+send "1"
+send <enter>
+wait system
+wait system
+send $date
+send <enter>
+wait system
+wait system
+currenttime = [screen-rect 06 075 06 080]
+currenttime = [string trim $currenttime :]
+currenth = [string range $currenttime 0 1]
+currentm = [string range $currenttime 3 4]
+time = "$currenth$currentm"
+wait system
+wait system
+wait system
+cursor 07 075
+wait system
+wait system
+send $time
+wait system
+wait system
+adc2_adj2 = [input-line "Do you need to adjust the ADC amount? Y or N" Administrative\ Charge]
+if {$adc2_adj2 == "N"} then {
+wait system
+wait system
+}
+if {$adc2_adj2 == "Y"} then {
+cursor 14 011
+adc = [input-line "What is the new price? 0.00" Administrative\ Charge]
+send $adc
+wait system
+send <field-plus>
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+}
+if {$adc == "3"} then {
+cursor 09 002
+send "3"
+send <enter>
+wait system
+wait system
+send <tab>
+send "1"
+send <enter>
+wait system
+wait system
+send $date
+send <enter>
+wait system
+wait system
+currenttime = [screen-rect 06 075 06 080]
+currenttime = [string trim $currenttime :]
+currenth = [string range $currenttime 0 1]
+currentm = [string range $currenttime 3 4]
+time = "$currenth$currentm"
+wait system
+cursor 07 075
+wait system
+wait system
+send $time
+wait system
+wait system
+adc_adj3 = [input-line "Do you need to adjust the ADC amount? Y or N" Administrative\ Charge]
+if {$adc_adj3 == "N"} then {
+wait system
+wait system
+}
+if {$adc_adj3 == "Y"} then {
+cursor 14 011
+adc = [input-line "What is the new price? 0.00" Administrative\ Charge]
+send $adc
+wait system
+send <field-plus>
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+}
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+send <enter>
+}
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+
+#
+#ADC End
+#
+
+#
+#screen 39
+#
+
+send "39"
+wait system
+wait system
+send <enter>
+wait system
+wait system 
+cursor 14 002
+fuel = [input-line "Do you need to make changes to FUEL CHARGE? Y or N " Screen\ 39]
+if {$fuel == "Y"} then {
+cursor 14 002
+send "2"
+send <enter>
+wait system
+wait system
+exclude = [input-line "EXCLUDED from Charge? Y or N" Screen\ 39]
+send $exclude
+wait system
+wait system
+rate = [input-line "What is the RATE of FUEL? 0.00" Screen\ 39]
+send $rate
+send <field-plus>
+wait system
+override_reason = [input-line "Reason for override? NEGOTIATED, CONTRACTED, FRANMUNI, GOVERNMENT, NATIONAL" Screen\ 39]
+send $override_reason
+wait system
+wait system
+cursor 17 032
+send "269715"
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system}
+if {$fuel == "N"} then {
+cursor 15 002
+}
+
+#
+#Enviro
+#
+
+env = [input-line "Do you need to make changes to ENV charge? Y or N " Screen\ 39]
+if {$env == "Y"} then {
+cursor 15 002
+send "2"
+send <enter>
+wait system
+wait system
+exclude = [input-line "EXCLUDED from Charge? Y or N" Screen\ 39]
+send $exclude
+wait system
+wait system
+rate = [input-line "What is the RATE of FUEL? 0.00" Screen\ 39]
+send $rate
+send <field-plus>
+wait system
+override_reason = [input-line "Reason for override? NEGOTIATED, CONTRACTED, FRANMUNI, GOVERNMENT, NATIONAL" Screen\ 39]
+send $override_reason
+wait system
+wait system
+cursor 17 032
+send "269715"
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+}
+if {$env == "N"} then {
+cursor 16 002
+}
+
+
+#
+#RCR
+#
+
+rcr = [input-line "Do you need to make changes to RCR charge? Y or N " Screen\ 39]
+if {$rcr == "Y"} then {
+cursor 16 002
+send "2"
+send <enter>
+wait system
+wait system
+exclude = [input-line "EXCLUDED from Charge? Y or N" Screen\ 39]
+send $exclude
+wait system
+wait system
+rate = [input-line "What is the RATE of RCR? 0.00" Screen\ 39]
+send $rate
+send <field-plus>
+wait system
+override_reason = [input-line "Reason for override? NEGOTIATED, CONTRACTED, FRANMUNI, GOVERNMENT, NATIONAL" Screen\ 39]
+send $override_reason
+wait system
+wait system
+cursor 17 032
+send "269715"
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+}
+if {$rcr == "N"} then {
+cursor 16 002
+}
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+
+#
+#DEL
+#
+
+cursor 11 002
+send <enter>
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+
+need6 = [input-line "Do you need to place a DELIVERY?  Y or N" Delivery]
+if {$need6 == "N"} then {
+send <enter>
+wait system
+wait system
+exit-script
+}
+if {$need6 == "Y"} then {
+send "15<enter>"
+wait system
+wait system
+send <f6>
+wait system
+wait system
+wait system
+send "tkt"
+wait system 
+wait system
+
+choice = [input-line "If Chargeable DLC type 1, If NON-chargable DEL type 2" Delivery]
+if {$choice == "1"} then { 
+cursor 09 021
+wait system
+wait system 
+wait system
+send "DLC"
+cursor 15 030
+wait system
+date = [input-line "Enter date formated (09082017)" Delivery]
+send $date
+send <tab>
+send <enter>
+wait system
+wait system
+wait system
+cursor 13 006
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+cursor 09 043
+wait system 
+wait system 
+send "customer"
+wait system
+wait system
+wait system
+wait system
+wait system 
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system  
+cursor 16 003
+send "1"
+send "drr"
+send "1"
+send <field-plus>
+wait system 
+wait system
+wait system
+wait system
+cursor 17 046
+send "dlc"
+send <f13>
+wait system
+wait system
+cursor 07 009
+notes = [input-line "SPECIAL INSTRUCTIONS" Delivery]
+send $notes
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+ if {$choice == "2"} then { 
+cursor 09 021
+wait system
+wait system 
+wait system
+send "DEL"
+cursor 15 030
+wait system
+date = [input-line "Enter DATE (09082017)" Delivery]
+send $date
+send <tab>
+send <enter>
+wait system
+wait system
+wait system
+
+#if the customer cutoff pop up shows
+
+wait system
+wait system
+cursor 09 042
+send "customer"
+wait system
+wait system
+wait system
+wait system
+wait system 
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system  
+cursor 16 003
+send "1"
+send "96T"
+wait system
+wait system
+send "1."
+send <field-plus>
+wait system
+cursor 17 046
+wait system
+send "DEL"
+wait system
+wait system
+send <enter>
+send <f13>
+wait system
+wait system
+cursor 07 009
+notes = [input-line "SPECIAL INSTRUCTIONS" Delivery]
+send $notes
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+
+message = [message "COMPLETE...
+VERIFY ALL SCREENS FOR CORRECTNESS
+- SCREEN 5 SERVICES
+- SCREEN 15 FOR NEW TKT
+- ENTER EXTRA STATUS CODES IF NEEDED
+- CREATED BY TERRY COLLIER
+    tcollie1@wm.com"]
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+}
+exit-script}}}
+
+
+#ADD A BREAK SCRIPT COMMAND INSIDE THE ABOVE BRACKETS
+
+
+if {$option_sales2 == "N"} then {
+wait system
+wait system
+wait system
+wait system
+}
+
+#NEED TO ADD A CUSTOMER NUMBER QUESTION AND REASON (ABOVE THIS LINE)
+
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+cursor 09 035
+
+#
+#screen 39
+#
+
+cursor 14 002
+fuel = [input-line "Do you need to make changes to FUEL CHARGE? Y or N " Screen\ 39]
+if {$fuel == "Y"} then {
+cursor 14 002
+send "2"
+send <enter>
+wait system
+wait system
+wait system
+wait system
+exclude = [input-line "EXCLUDED from Charge? Y or N" Screen\ 39]
+send $exclude
+wait system
+wait system
+rate = [input-line "What is the RATE of FUEL? 0.00" Screen\ 39]
+send $rate
+send <field-plus>
+wait system
+override_reason = [input-line "Reason for override? NEGOTIATED, CONTRACTED, FRANMUNI, GOVERNMENT, NATIONAL" Screen\ 39]
+while {$override_reason != "NEGOTIATED" && $override_reason != "CONTRACTED" && $override_reason != "FRANMUNI" &&
+$override_reason != "GOVERNMENT" && $override_reason != "NATIONAL"} {
+override_reason = [input-line "Try again - NEGOTIATED, CONTRACTED, FRANMUNI, GOVERNMENT, NATIONAL" Screen\ 39]
+}
+send $override_reason
+wait system
+wait system
+cursor 17 032
+send "269715"
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+}
+if {$fuel == "N"} then {
+cursor 15 002
+}
+
+#
+#Enviro
+#
+
+env = [input-line "Do you need to make changes to ENV charge? Y or N " Screen\ 39]
+if {$env == "Y"} then {
+cursor 15 002
+send "2"
+send <enter>
+wait system
+wait system
+wait system
+wait system
+exclude = [input-line "EXCLUDED from Charge? Y or N" Screen\ 39]
+send $exclude
+wait system
+wait system
+rate = [input-line "What is the RATE of FUEL? 0.00" Screen\ 39]
+send $rate
+send <field-plus>
+wait system
+override_reason = [input-line "Reason for override? NEGOTIATED, CONTRACTED, FRANMUNI, GOVERNMENT, NATIONAL" Screen\ 39]
+while {$override_reason != "NEGOTIATED" && $override_reason != "CONTRACTED" && $override_reason != "FRANMUNI" &&
+$override_reason != "GOVERNMENT" && $override_reason != "NATIONAL"} {
+override_reason = [input-line "Try again - NEGOTIATED, CONTRACTED, FRANMUNI, GOVERNMENT, NATIONAL" Screen\ 39]
+}
+send $override_reason
+wait system
+wait system
+cursor 17 032
+send "269715"
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+}
+if {$env == "N"} then {
+cursor 16 002
+}
+
+#
+#RCR
+#
+
+rcr = [input-line "Do you need to make changes to RCR charge? Y or N" Screen\ 39]
+if {$rcr == "Y"} then {
+cursor 16 002
+send "2"
+send <enter>
+wait system
+wait system
+wait system
+wait system
+exclude = [input-line "EXCLUDED from Charge? Y or N" Screen\ 39]
+send $exclude
+wait system
+wait system
+rate = [input-line "What is the RATE of RCR? 0.00" Screen\ 39]
+send $rate
+send <field-plus>
+wait system
+override_reason = [input-line "Reason for override? NEGOTIATED, CONTRACTED, FRANMUNI, GOVERNMENT, NATIONAL" Screen\ 39]
+while {$override_reason != "NEGOTIATED" && $override_reason != "CONTRACTED" && $override_reason != "FRANMUNI" &&
+$override_reason != "GOVERNMENT" && $override_reason != "NATIONAL"} {
+override_reason = [input-line "Try again - NEGOTIATED, CONTRACTED, FRANMUNI, GOVERNMENT, NATIONAL"]
+}
+send $override_reason
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+cursor 17 032
+send "269715"
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <f12>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+}
+if {$rcr == "N"} then {
+cursor 16 002
+}
+
+
+
+
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+
+
+#
+#screen 31
+#
+
+#ADD AN IF STATMENT ASKING IF THE POP UP FOR SERVICE CHANGE CAME UP TO HIT YES, IF NOT THEN NO. MAKE THE BELOW THE IF
+
+option_sales3 = [input-line "If it is asking for your SALES NUMBER hit Y, if not hit N" Value\ Change]
+if {$option_sales3 == "Y"} then {
+cursor 09 035
+sales_person = [input-line "Whats your SALES NUMBER?" Value\ Change]
+send $sales_person
+send <enter>
+wait system
+wait system
+send "NBG"
+cursor 12 035
+not2 = [input-line "DISCRIPTION?" Value\ Change]
+send $not2
+wait system
+send <enter>
+wait system
+wait system 
+send <enter>
+wait system
+wait system
+}
+if {$option_sales3 == "N"} then {
+wait system
+wait system
+}
+
+#
+#screen 31
+#
+
+open = [input-line "Is area OPEN MARKET? Y or N" Screen\ 31]
+if {$open == "Y"} then {
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+if {$open == "N"} then {
+send "2"
+wait system
+send <enter>
+wait system
+wait system
+contract = [input-line "Whats the contract type if not OPEN MARKET (FRAN/MUNI , 
+FRAN/MUNI-HOA , OPEN MARKET , OPEN MARKET-HOA?" Screen\ 31]
+while {$contract != "FRAN/MUNI" && $contract != "FRAN/MUNI-HOA" && $contract != "OPEN MARKET-HOA"} {
+contract = [input-line "Try again - Whats the contract type if not OPEN MARKET (FRAN/MUNI , 
+FRAN/MUNI-HOA , OPEN MARKET , OPEN MARKET-HOA?" Screen\ 31]
+}
+send $contract
+wait system
+send <field-plus>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+
+
+
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+
+#
+#THIS WILL MAKE SURE THE NEW ACCOUNT NUMBER IS AT THE TOP
+#
+
+home = [input-line "Enter the account number.1" Bringing\ Account\ to\ the\ top\ of\ List\ ]
+wait system
+wait system
+send <f10>
+wait system
+wait system
+send "1"
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send $home
+wait system
+send <field-plus>
+wait system
+send <enter> 
+wait system
+wait system 
+
+#
+#DEL
+#
+
+cursor 11 002
+send <enter>
+wait system
+send <enter>
+need6 = [input-line "Do you need to place a DELIVERY?  Y or N" Delivery]
+if {$need6 == "N"} then {
+send <enter>
+}
+if {$need6 == "Y"} then {
+send "15<enter>"
+wait system
+wait system
+send <f6>
+wait system
+wait system
+wait system
+send "tkt"
+wait system 
+wait system
+choice = [input-line "If Chargeable DLC Type 1, If NON-chargable DEL Type 2" Delivery]
+if {$choice == "1"} then { 
+cursor 09 021
+wait system
+wait system 
+wait system
+send "DLC"
+cursor 15 030
+wait system
+date = [input-line "Enter DATE formated (09082017)" Delivery]
+send $date
+send <tab>
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+cursor 09 043
+wait system 
+wait system 
+send "customer"
+wait system
+wait system
+wait system
+wait system
+wait system 
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system  
+cursor 16 003
+send "1"
+send "drr"
+send "1<field-plus>"
+wait system 
+wait system
+wait system
+wait system
+cursor 17 046
+send "dlc"
+send <f13>
+wait system
+wait system
+cursor 07 009
+notes = [input-line "SPECIAL INSTRUCTIONS" Delivery]
+send $notes
+wait system
+send <enter>
+wait system
+send <enter>
+wait system
+send <enter>
+send <enter>
+send <enter>
+send <enter>}
+if {$choice == "2"} then { 
+cursor 09 021
+wait system
+wait system 
+wait system
+send "DEL"
+cursor 15 030
+wait system
+date = [input-line "Enter DATE (09082017)" Delivery]
+send $date
+send <tab>
+send <enter>
+wait system
+wait system
+wait system
+
+#if the customer cutoff pop up shows
+
+wait system
+wait system
+cursor 09 042
+send "customer"
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system 
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system  
+cursor 16 003
+send "1"
+send "96T"
+wait system
+wait system
+send "1"
+send <field-plus>
+wait system
+cursor 17 046
+wait system
+send "DEL"
+wait system
+wait system
+send <enter>
+send <f13>
+wait system
+wait system
+cursor 07 009
+notes = [input-line "SPECIAL INSTRUCTIONS" Delivery]
+send $notes
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+}
+}
+
+wait system
+wait system
+wait system
+wait system
+
+#AUTODATE HAS TO START ON HOME SCREEN
+
+currentdate = [screen-rect 01 001 01 011]
+currentdate = [string trim $currentdate]
+currentm = [string range $currentdate 0 1]
+currentd = [string range $currentdate 3 4]
+currenty = [string range $currentdate 6 9]
+currentfdate = "$currentm$currentd$currenty"
+
+
+#
+#ADC 
+#
+
+cursor 11 002
+wait system
+cda = [input-line "Are you waiving the ADC? for Y or for N" Administrative\ Charge]
+if {$cda == "Y"} then {
+cursor 11 002
+wait system
+send <enter>
+}
+if {$cda == "N"} then {
+cursor  11 002
+wait system
+wait system
+wait system
+wait system
+send "15"
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <f6>
+wait system
+wait system
+wait system
+
+#CREATING ADC
+
+send "tktadc"
+cursor 15 030
+send $currentfdate
+send <field-plus>
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+cursor 09 043test
+requested = [screen-rect 07 001 07 025]
+send $requested
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system 
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system 
+wait system
+send <pgdn>
+wait system
+wait system
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+wait system
+wait system
+cursor 16 003
+wait system 
+wait system
+send "1"
+wait system 
+cursor 16 006
+send "SRU"
+send "1.<field-plus>"
+wait system
+wait system
+wait system
+wait system 
+wait system
+cursor 17 046
+send "ADC"
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+cursor 11 002
+wait system
+wait system
+wait system
+send "15"
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+
+
+#ADDING A LINE CHOICE HERE SO THE ADC TKT CAN BE SELECTED
+
+adc = [input-line "Choose line with the ADC. From the top to bottom starting with 1" Administrative\ Charge]
+
+if {$adc == "1"} then {
+cursor 07 002
+send "3"
+send <enter>
+send <tab>
+send "1"
+send <enter>
+send $date
+send <enter>
+wait system
+wait system
+currenttime = [screen-rect 06 075 06 079]
+currenttime = [string trim $currenttime :]
+currenth = [string range $currenttime 0 1]
+currentm = [string range $currenttime 3 4]
+time = "$currenth$currentm"
+wait system
+wait system
+cursor 07 075
+wait system
+wait system
+send $time
+wait system
+wait system
+adc_adj = [input-line "Do you need to adjust the ADC amount? Y or N" Administrative\ Charge]
+if {$adc_adj == "N"} then {
+wait system
+wait system
+}
+if {$adc_adj == "Y"} then {
+cursor 14 011
+adc = [input-line "What is the new price? 0.00" Administrative\ Charge]
+send $adc
+wait system
+send <field-plus>
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+}
+
+if {$adc == "2"} then {
+cursor 08 002
+send "3"
+send <enter>
+send <tab>
+send "1"
+send <enter>
+send $date
+send <enter>
+wait system
+wait system
+currenttime = [screen-rect 06 075 06 079]
+currenttime = [string trim $currenttime :]
+currenth = [string range $currenttime 0 1]
+currentm = [string range $currenttime 3 4]
+time = "$currenth$currentm"
+wait system
+wait system
+cursor 07 075
+wait system
+wait system
+send $time
+wait system
+wait system
+adc2_adj2 = [input-line "Do you need to adjust the ADC amount? Y or N" Administrative\ Charge]
+if {$adc2_adj2 == "N"} then {
+wait system
+wait system
+}
+if {$adc2_adj2 == "Y"} then {
+cursor 14 011
+adc = [input-line "What is the new price? 0.00" Administrative\ Charge]
+send $adc
+wait system
+send <field-plus>
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+}
+
+if {$adc == "3"} then {
+cursor 09 002
+send "3"
+send <enter>
+send <tab>
+send "1"
+send <enter>
+send $date
+send <enter>
+wait system
+wait system
+currenttime = [screen-rect 06 075 06 079]
+currenttime = [string trim $currenttime :]
+currenth = [string range $currenttime 0 1]
+currentm = [string range $currenttime 3 4]
+time = "$currenth$currentm"
+cursor 07 075
+wait system
+wait system
+send $time
+wait system
+wait system
+adc_adj3 = [input-line "Do you need to adjust the ADC amount? Y or N" Administrative\ Charge]
+if {$adc_adj3 == "N"} then {
+wait system
+wait system
+}
+if {$adc_adj3 == "Y"} then {
+cursor 14 011
+adc = [input-line "What is the new price? 0.00" Administrative\ Charge]
+send $adc
+wait system
+send <field-plus>
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+}
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+send <enter>
+}
+
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+send <enter>
+wait system
+wait system
+wait system
+wait system
+wait system
+wait system
+
+#
+#ADC End
+#
+
+#
+#NEW
+#
+
+new3 = [input-line "Do you need to add a NEW TKT? Y or N" New\ Ticket]
+if {$new3 == "Y"} then {
+wait system
+wait system
+send "15"
+wait system
+wait system
+send <enter>
+wait system 
+wait system
+send <f6>
+wait system
+wait system
+send "tktnew"
+date2 = [input-line "DATE? (09242017)" New\ Ticket]
+send $date2
+wait system
+send <enter>
+wait system
+wait system
+cursor 09 042
+wait system
+asked = [input-line "REQUSTED BY?" New\ Ticket]
+send $asked
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+send <pgdn>
+wait system
+wait system
+
+cursor 16 003
+send "1"
+cursor 16 006
+send "96T"
+wait system
+wait system
+cursor 16 010
+send "1"
+send <field-plus>
+wait system
+wait system
+wait system
+cursor 17 046
+wait system
+wait system
+send "NEW"
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+send <enter>
+wait system
+wait system
+}
+if {$new3 == "N"} then {
+wait system
+wait system
+}
+cursor 11 002
+send "3"
+send <enter>
+wait system
+wait system
+screen3_notes = [input-line "Enter SCREEN 3 Notes" New\ Ticket]
+send $screen3_notes
+wait system
+send <enter>
+
+
+message = [message "COMPLETE...
+VERIFY ALL SCREENS FOR CORRECTNESS
+- SCREEN 5 SERVICES
+- SCREEN 15 FOR NEW TKT
+- ENTER EXTRA STATUS CODES IF NEEDED
+- CREATED BY TERRY COLLIER
+    tcollie1@wm.com"]
+
+
+
+
+
